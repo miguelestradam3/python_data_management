@@ -1,0 +1,8 @@
+python:
+  global:
+    modules:
+      - pandas
+      - sqlite3
+      - pytest
+      - openpyxl
+      - matplotlib
