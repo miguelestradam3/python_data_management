@@ -19,3 +19,7 @@ There is going to be a new file for each execution done :paperclip:
 ### Save the data you require 
 
 Save the data of your query in an excel file with the name of your choosing
+
+### Transform Excel to Databases
+
+You may also process the excel file if you do not want to make the transaction from excel to `db`
