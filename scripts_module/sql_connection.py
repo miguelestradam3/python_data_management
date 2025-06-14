@@ -86,19 +86,31 @@ class SqLiteManager():
             self.logger.error("EXECUTION ERROR-> {} and message: {}".format(error.__class__.__name__, error))
             print("\nERROR: {}\n".format(error))
 
+    def excel_to_sqlite_database(self, excel_file_path:str, sheets:list)->None:
+        """
+        Method
+        ---      
+        """
+        try:
+            # Read a specific sheet
+            for sheet in sheets:
+                df_specific_sheet = self.pandas.read_excel(excel_file_path, sheet_name = sheet)
+                # Insert DataFrame to table
+                df_specific_sheet.to_sql(sheet, self.connection, if_exists='replace', index=False)
+                #Saving changes
+                if self.save_changes():
+                    print('commited action...')
+                else:
+                    raise Exception
+                #finish: saving changes
+        except Exception as error:
+            self.logger.error("EXECUTION ERROR-> {} and message: {}".format(error.__class__.__name__, error))
+            print("\nERROR: {}\n".format(error))
+
     def run_query(self, from_file:bool=False, pandas_dataframe:bool=False, script:str="SELECT * FROM Invoices")->None:
         """
         Method
         ---
-        Objective: Called to define the connection to SqLite connection
-        Params:
-            param -> db_path -> description: 
-            param -> db_path -> type: string
-            param -> db_path -> default: 'SHOW TABLES;'
-
-            param -> db_path -> description: 
-            param -> db_path -> type: bool
-            param -> db_path -> default: False
         """
         try:
             #change variable content if the sql is on a file
