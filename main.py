@@ -21,5 +21,5 @@ if __name__ == "__main__":
     #sqlite_.dataframe_ = sqlite_.dataframe_.sort_values(['DeliveryCharge'],ascending=True)
     #sqlite_.save_in_excel(output="output/output.xlsx")
     #sqlite_.print_graphic(title="No title selected",x_axis="ClientID", y_axis="DeliveryCharge", kind="bar")
-    sqlite_.excel_to_sqlite_database(excel_file_path="scripts_module/data/CourseDataset.xlsx", sheets=["line_items","orders"])
+    sqlite_.excel_to_sqlite_database(excel_file_path="scripts_module/data/CourseDataset.xlsx")
     del sqlite_

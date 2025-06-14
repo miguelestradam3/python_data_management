@@ -86,12 +86,16 @@ class SqLiteManager():
             self.logger.error("EXECUTION ERROR-> {} and message: {}".format(error.__class__.__name__, error))
             print("\nERROR: {}\n".format(error))
 
-    def excel_to_sqlite_database(self, excel_file_path:str, sheets:list)->None:
+    def excel_to_sqlite_database(self, excel_file_path:str, sheets:list=[])->None:
         """
         Method
         ---      
+        If you leave the sheets parameter with no data the program will take all the sheets
         """
         try:
+            if sheets == []:
+                xl = self.pandas.ExcelFile(excel_file_path)
+                sheets = xl.sheet_names  # see all sheet names
             # Read a specific sheet
             for sheet in sheets:
                 df_specific_sheet = self.pandas.read_excel(excel_file_path, sheet_name = sheet)
